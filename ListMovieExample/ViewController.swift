@@ -9,21 +9,26 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate,TrafficLightViewDelegate{
+  
+    
     private let disposeBag = DisposeBag()
      let homeViewModel:HomeViewModel = HomeViewModel()
      var  listMovie:PublishSubject<[FilmModel]> = PublishSubject()
      var listCinema:Observable<[FilmModel]>!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    private let trafficLightPresenter = TrafficLightPresenter(trafficLightService: TrafficLightService())
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.tableView.separatorColor = .clear
         self.tableView.rx.setDelegate(self).disposed(by: disposeBag)
-        self.tableView.estimatedRowHeight = 100
-        
+        self.tableView.estimatedRowHeight = 300
+        self.tableView.rowHeight = UITableView.automaticDimension
        
         self.tableView.register(CinemaCell.nib, forCellReuseIdentifier: CinemaCell.identifier)
         homeViewModel.getListMovie().subscribe {$0.element.flatMap { filmData in
@@ -38,12 +43,34 @@ class ViewController: UIViewController, UITableViewDelegate {
             cell.indexRow = row
             return cell
         }.disposed(by: disposeBag)
+        setUpCollectionView()
+        
+        trafficLightPresenter.setViewDelegate(trafficLighViewDelegate: self)
+        trafficLightPresenter.trafficLightColorSelected(colorName: "Red")
+        tableView.rx.itemSelected.subscribe { [weak self] indexPath in
+            guard let wSelf = self else {return}
+            let vc = PromotionViewController.init(nibName:"PromotionViewController" , bundle: nil)
+            wSelf.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
          
         // Do any additional setup after loading the view.vie
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
           return UITableView.automaticDimension
+    }
+    
+    func setUpCollectionView() {
+        self.collectionView.register(CinemaPrinterestCell.nib, forCellWithReuseIdentifier: CinemaPrinterestCell.identifier)
+        
+        
+    }
+    
+    func displayTrafficLight(description: (String)) {
+        
+        print("description ===== \(description)")
     }
 
 }
