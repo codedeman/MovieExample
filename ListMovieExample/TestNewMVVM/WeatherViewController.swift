@@ -17,6 +17,10 @@ class WeatherViewController:UIViewController {
     public var viewModel = WeatherViewModel()
     
     @IBOutlet weak var tableView: UITableView!
+    
+    let myConcurrentQueue = DispatchQueue(label: "MyConcurrentQueue", attributes: .concurrent)
+        var earths: [String] = []
+
     var listMovie:[FilmModel]! {
         didSet {
             self.tableView.reloadData()
@@ -31,6 +35,27 @@ class WeatherViewController:UIViewController {
     }
     
     private func initViewModel () {
+        
+        myConcurrentQueue.sync {
+            for i in 0...1000 {
+                self.earths.append("🌎: \(i)")
+            }
+        }
+        
+//        myConcurrentQueue.async {
+//            for i in 0...1000 {
+////                self.earths[i] = "⚽: \(i)"
+//                print(self.earths[i])
+//            }
+//        }
+        myConcurrentQueue.async(flags: .barrier) {
+            for i in 0...1000 {
+                self.earths[i] = "⚽: \(i)"
+                print(self.earths[i])
+
+            }
+        }
+        
         self.viewModel.loadList()
         
         self.viewModel.locationName.bind { textStr in
@@ -69,7 +94,7 @@ extension WeatherViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = listMovie[indexPath.row]
-        listMovie[indexPath.row].details?.id.value  = "---LOADING----\(data.name ?? "")"
+//        listMovie[indexPath.row].details?.id.value  = "---LOADING----\(data.name ?? "")"
         viewModel.locationName.value = data.price ?? ""
         viewModel.listMovie.value = listMovie
     }

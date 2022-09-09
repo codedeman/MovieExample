@@ -25,6 +25,7 @@
 		30723F50289BEA5600BFF19B /* ListMovieExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30723F4F289BEA5600BFF19B /* ListMovieExampleUITestsLaunchTests.swift */; };
 		30723F5F289BEA8000BFF19B /* CinemaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30723F5D289BEA8000BFF19B /* CinemaCell.swift */; };
 		30723F60289BEA8000BFF19B /* CinemaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30723F5E289BEA8000BFF19B /* CinemaCell.xib */; };
+		308B881328C9CE8D004C485F /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308B881228C9CE8D004C485F /* ServiceApi.swift */; };
 		3098968728BEF0B200402408 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3098968628BEF0B200402408 /* Alamofire */; };
 		3098968928BEF0B200402408 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3098968828BEF0B200402408 /* RxCocoa */; };
 		3098968B28BEF0B200402408 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3098968A28BEF0B200402408 /* RxSwift */; };
@@ -84,6 +85,7 @@
 		30723F4F289BEA5600BFF19B /* ListMovieExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMovieExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		30723F5D289BEA8000BFF19B /* CinemaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCell.swift; sourceTree = "<group>"; };
 		30723F5E289BEA8000BFF19B /* CinemaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CinemaCell.xib; sourceTree = "<group>"; };
+		308B881228C9CE8D004C485F /* ServiceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
 		30D2119128C8930500CE045C /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		30D2119228C8930500CE045C /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		30D2119328C8930500CE045C /* WeatherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
@@ -233,6 +235,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		308B881128C9CE72004C485F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				308B881228C9CE8D004C485F /* ServiceApi.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		3098968528BEF0B200402408 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 		30F9781528B3741800F95EDD /* Movie */ = {
 			isa = PBXGroup;
 			children = (
+				308B881128C9CE72004C485F /* API */,
 				30F9781D28B38C8700F95EDD /* MovieViewController.swift */,
 				30F9781E28B38C8700F95EDD /* MovieViewModel.swift */,
 				30F9781F28B38C8700F95EDD /* MovieViewController.xib */,
@@ -438,6 +449,7 @@
 				3068066B28AF41F800853EDA /* CinemaPrinterestCell.swift in Sources */,
 				306C7FF328A5E20D00CA650D /* HomeViewModel.swift in Sources */,
 				30D2119828C8931600CE045C /* Box.swift in Sources */,
+				308B881328C9CE8D004C485F /* ServiceApi.swift in Sources */,
 				30723F5F289BEA8000BFF19B /* CinemaCell.swift in Sources */,
 				30F9781228B36DDC00F95EDD /* PromotionViewController.swift in Sources */,
 				30D2119528C8930500CE045C /* WeatherViewModel.swift in Sources */,
